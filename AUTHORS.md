@@ -10,7 +10,7 @@ GitHub usernames are indicated in parentheses.
 
     Hardev Singh (SinghHardev)
 
-Product Owner:
+# Product Owner
 
     Kareem Moustafa
 
