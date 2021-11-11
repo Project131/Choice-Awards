@@ -13,15 +13,15 @@ public class SqlDatabase {
     //private static String fields = "id int  auto_increment primary key, title char(200), category char(200)"; //used for a template to create a new table
 
     //constructor for class sets all of the needed information to connect
-    public static void SqlDatabase(String dataBase, String userName, String passWord) {
+    public SqlDatabase(String dataBase, String userName, String passWord) {
         dbName = dataBase;
         username = userName;
         password = passWord;
         dbUrl = "jdbc:mysql://localhost:3306/" + dbName;
     }
 
-    //reads the entire table
-    public static void readTable(String table) {
+    //reads the tables title
+    public static void readTableTitle(String table) {
         String query = "select * from " + table;
         try {
             Connection myConnection = DriverManager.getConnection(dbUrl, username, password);
@@ -38,8 +38,8 @@ public class SqlDatabase {
         }
     }
 
-    //inserts a movie title into table
-    public static void insertMovie(String table, String movieName, String category) {
+    //inserts a movie title and category into the table
+    public static void insertMovieTitle(String table, String movieName, String category) {
         String query = "insert into " + table + "(title, category) values(\""+movieName+"\",\""+category+"\");";
         try {
             Connection myConnection = DriverManager.getConnection(dbUrl, username, password);
@@ -51,7 +51,7 @@ public class SqlDatabase {
         }
     }
 
-    //deletes a movie title into movies table
+    //deletes a movie title from table
     public static void deleteMovie(String table, String movieName) {
         String query = "delete from " + table + " where title = \""+movieName+"\";";
         try {
