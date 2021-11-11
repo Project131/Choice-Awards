@@ -1,45 +1,60 @@
+/*
+Author: Chris Lemke
+Call constructor for the class with the name of the database you wish to connect to
+*/
+
 import java.sql.*;
 import java.io.*;
 import java.util.Scanner;
-import java.util.Arrays;
-class sqlDatabase {
 
-    private static String dbName;
+
+public class SqlDatabase {
+
+    private static String dbName; 
     private static String dbUrl;
-    private static String username;
+    private static String username; 
     private static String password;
-    private static String fields = "id int  auto_increment primary key, title char(200), category char(200)";
+    private static String fields = "id int  auto_increment primary key, title char(200), category char(200)"; //used for a template to create a new table
 
+
+    //when implementing, this main function will represent the class this file is called from
     public static void main(String ... args) {
+        String dataBaseName = "Movies";
         String tableToRead = "movies";
         String movieName = "Lord of the Rings";
         String category = "Fantasy Adventure";
 
-        setLoginInfo();
+        SqlDatabase(dataBaseName); //this will act as the constructor when main is split into production code
 
         //createTable(tableToRead, fields);
         readTable(tableToRead);
         System.out.println("\n");
-
-        insertMovie(movieName, category);
+    
+        insertMovie(tableToRead, movieName, category);
         readTable(tableToRead);
         System.out.println("\n");
-
+    
         movieName = "The Hobbit: An Unexpected Journey";
-
-        insertMovie(movieName, category);
+    
+        insertMovie(tableToRead, movieName, category);
         readTable(tableToRead);
         System.out.println("\n");
-
-        deleteMovie(movieName);
+    
+        deleteMovie(tableToRead, movieName);
         readTable(tableToRead);
         System.out.println("\n");
-
+    
         //customQuery("select * from movies");
     }
 
+    public static void SqlDatabase(String dataBase) {
+        dbName = dataBase;
+        dbUrl = "jdbc:mysql://localhost:3306/" + dbName;
+        setLoginInfo();
+    }
+
     //get the login info from the server
-    public static void setLoginInfo() {
+    private static void setLoginInfo() {
         int i = 0;
         String[] information = new String[3];
         try {
@@ -50,10 +65,8 @@ class sqlDatabase {
                 information[i] = data;
                 i++;
             }
-            dbName = information[0];
-            username = information[1];
-            password = information[2];
-            dbUrl = "jdbc:mysql://localhost:3306/" + dbName;
+            username = information[0];
+            password = information[1];
             myReader.close();
         }
         catch (FileNotFoundException e) {
@@ -62,7 +75,7 @@ class sqlDatabase {
         }
     }
 
-    //reads the entire table of movie names
+    //reads the entire table
     public static void readTable(String table) {
         String query = "select * from " + table;
         try {
@@ -74,16 +87,15 @@ class sqlDatabase {
                 System.out.println("Movie id: " + myResultSet.getString("id") + "\tMovie Title: " + 
                                     myResultSet.getString("title") + "\t\tCategory: " + myResultSet.getString("category"));
             }
-
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    //inserts a movie title into movies table
-    public static void insertMovie(String movieName, String category) {
-        String query = "insert into movies(title, category) values(\""+movieName+"\",\""+category+"\");";
+    //inserts a movie title into table
+    public static void insertMovie(String table, String movieName, String category) {
+        String query = "insert into " + table + "(title, category) values(\""+movieName+"\",\""+category+"\");";
         try {
             Connection myConnection = DriverManager.getConnection(dbUrl, username, password);
             Statement myStatement = myConnection.createStatement();
@@ -95,8 +107,8 @@ class sqlDatabase {
     }
 
     //deletes a movie title into movies table
-    public static void deleteMovie(String movieName) {
-        String query = "delete from movies where title = \""+movieName+"\";";
+    public static void deleteMovie(String table, String movieName) {
+        String query = "delete from " + table + " where title = \""+movieName+"\";";
         try {
             Connection myConnection = DriverManager.getConnection(dbUrl, username, password);
             Statement myStatement = myConnection.createStatement();
