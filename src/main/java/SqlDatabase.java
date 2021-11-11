@@ -1,78 +1,23 @@
 /*
 Author: Chris Lemke
-Call constructor for the class with the name of the database you wish to connect to
+Call class like SqlDatabase(dataBaseName, username, password)
 */
 
 import java.sql.*;
-import java.io.*;
-import java.util.Scanner;
-
-
 public class SqlDatabase {
 
     private static String dbName; 
     private static String dbUrl;
     private static String username; 
     private static String password;
-    private static String fields = "id int  auto_increment primary key, title char(200), category char(200)"; //used for a template to create a new table
+    //private static String fields = "id int  auto_increment primary key, title char(200), category char(200)"; //used for a template to create a new table
 
-
-    //when implementing, this main function will represent the class this file is called from
-    public static void main(String ... args) {
-        String dataBaseName = "Movies";
-        String tableToRead = "movies";
-        String movieName = "Lord of the Rings";
-        String category = "Fantasy Adventure";
-
-        SqlDatabase(dataBaseName); //this will act as the constructor when main is split into production code
-
-        //createTable(tableToRead, fields);
-        readTable(tableToRead);
-        System.out.println("\n");
-    
-        insertMovie(tableToRead, movieName, category);
-        readTable(tableToRead);
-        System.out.println("\n");
-    
-        movieName = "The Hobbit: An Unexpected Journey";
-    
-        insertMovie(tableToRead, movieName, category);
-        readTable(tableToRead);
-        System.out.println("\n");
-    
-        deleteMovie(tableToRead, movieName);
-        readTable(tableToRead);
-        System.out.println("\n");
-    
-        //customQuery("select * from movies");
-    }
-
-    public static void SqlDatabase(String dataBase) {
+    //constructor for class sets all of the needed information to connect
+    public static void SqlDatabase(String dataBase, String userName, String passWord) {
         dbName = dataBase;
+        username = userName;
+        password = passWord;
         dbUrl = "jdbc:mysql://localhost:3306/" + dbName;
-        setLoginInfo();
-    }
-
-    //get the login info from the server
-    private static void setLoginInfo() {
-        int i = 0;
-        String[] information = new String[3];
-        try {
-            File file = new File("database.txt");
-            Scanner myReader = new Scanner(file);
-            while(myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                information[i] = data;
-                i++;
-            }
-            username = information[0];
-            password = information[1];
-            myReader.close();
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("An error has occured.");
-            e.printStackTrace();
-        }
     }
 
     //reads the entire table
