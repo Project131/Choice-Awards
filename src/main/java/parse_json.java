@@ -13,7 +13,7 @@ public class parse_json {
 			
 			//F:\Downloads\archive\the_oscar_awards.csv
 	        JSONParser parser = new JSONParser();
-	        SqlDatabase database = new SqlDatabase("Movies", "user", "pw");
+	        SqlDatabase database = new SqlDatabase("Movies", "root", "MysqlGroup4@");
 	        
 			database.createTable("Movies", "(year_film, year_ceremony, ceremony, category, film, name, winner)");
 	        try {
@@ -68,6 +68,8 @@ public class parse_json {
 	            e.printStackTrace();
 	        }
 	        
-	        database.customQuery("SELECT * FROM Movies WHERE year_file='1990'");
+	       // database.customQuery("SELECT * FROM Movies WHERE year_file='1990'");
+	        database.customQuery("SELECT * FROM Movies");
 		}
+		
 }
