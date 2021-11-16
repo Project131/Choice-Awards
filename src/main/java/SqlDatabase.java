@@ -50,7 +50,27 @@ public class SqlDatabase {
             System.out.println(e.getMessage());
         }
     }
-
+    //inserts all items from our dataset
+    public static void insertRow(String table, long year_film, long year_ceremony, long ceremony,
+	    	String category, String film, String name, boolean winner) {
+	    	
+	        String query = "insert into " + table + "(year_film, year_ceremony, ceremony,\r\n"
+	        		+ " category, film, name, winner) values(\""+year_film+"\",\""+category+"\",\"" + year_ceremony +"\",\""
+	        		+ ceremony +"\",\""
+	        		+ category + "\",\""
+	        		+ film + "\",\""
+	        		+ name + "\",\""
+	        		+ winner +"\");";
+	        try {
+	            Connection myConnection = DriverManager.getConnection(dbUrl, username, password);
+	            Statement myStatement = myConnection.createStatement();
+	            myStatement.executeUpdate(query);
+	        }
+	        catch(Exception e) {
+	            System.out.println(e.getMessage());
+	        }
+	    }
+    
     //deletes a movie title from table
     public static void deleteMovie(String table, String movieName) {
         String query = "delete from " + table + " where title = \""+movieName+"\";";
