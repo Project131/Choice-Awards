@@ -78,7 +78,7 @@ class Database {
     //This function will read all rows from the table and return all movies & data with at least one vote as an array
     function resetVotes() {
         $query = "update {$this->table} set votes = 0";
-        $result = $this->conn->query($query);
+        $this->conn->query($query);
     }
 
     //custom query
