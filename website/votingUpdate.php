@@ -1,30 +1,30 @@
 <?php 
 /*
-Created by: Chris Lemke
+
+   _____ _           _                                         _     
+  / ____| |         (_)              /\                       | |    
+ | |    | |__   ___  _  ___ ___     /  \__      ____ _ _ __ __| |___ 
+ | |    | '_ \ / _ \| |/ __/ _ \   / /\ \ \ /\ / / _` | '__/ _` / __|
+ | |____| | | | (_) | | (_|  __/  / ____ \ V  V / (_| | | | (_| \__ \
+  \_____|_| |_|\___/|_|\___\___| /_/    \_\_/\_/ \__,_|_|  \__,_|___/
+                                                                     
+                                                                     
+Author: Chris Lemke
 This code is used to take in a movie title and update the vote counts in the database
 */
 
-$servername = "localhost";
-$username = "<Redacted for github>";
-$password = "<Redacted for github>";
-$dbname = "Movies";
+include_once "resources/database.php"; //used for connection to DB
+
 $tableName = "movies";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-echo "Connected successfully<br>\n";
-
+//create new connection
+$db = new Database($tableName);
+$db->connect();
 
 //if we recieved a post from the webpage
 if(isset($_POST["submit"])) {
     $title = $_POST["movie"];
     $category = $_POST["category"];
-    print_r($_POST);
 
     //if the user typed in a category for the movie and it exists in the DB
     if($category !== "" && categoryExists($category, $title)) {
@@ -48,7 +48,7 @@ if(isset($_POST["submit"])) {
     }
 
     //make the query to mysql
-    if($conn->query($sql) === TRUE) {
+    if($db->query($sql) === TRUE) {
         echo "<br>Updated votes for: {$title} successfully";
     } 
     else {
@@ -56,26 +56,21 @@ if(isset($_POST["submit"])) {
     }
 }
 
-$conn->close();
+$db->disconnect();
 
 //after the file is over, redirect user to this page
 header("Location: https://choiceawards.xyz/thank-you-for-voting/");
 
 
-
 function categoryExists($category, $title){
-    $servername = "localhost";
-    $username = "<Redacted for github>";
-    $password = "<Redacted for github>";
-    $dbname = "Movies";
     $tableName = "movies";
-
     //create new connection
-    $conn2 = new mysqli($servername, $username, $password, $dbname);
-    $query = "select id from {$tableName} where nominationCategory = '{$category}' and title = '{$title}'";
-    $result = $conn2->query($query);
-    $conn2->close();
+    $db = new Database($tableName);
+    $db->connect();
 
+    $query = "select id from {$tableName} where nominationCategory = '{$category}' and title = '{$title}'";
+    $result = $db->query($query);
+    $db->disconnect();
     return $result->num_rows === 0 ? false :  true;
 }
 
