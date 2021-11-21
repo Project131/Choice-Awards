@@ -1,14 +1,6 @@
-
-   _____ _           _                                         _     
-  / ____| |         (_)              /\                       | |    
- | |    | |__   ___  _  ___ ___     /  \__      ____ _ _ __ __| |___ 
- | |    | '_ \ / _ \| |/ __/ _ \   / /\ \ \ /\ / / _` | '__/ _` / __|
- | |____| | | | (_) | | (_|  __/  / ____ \ V  V / (_| | | | (_| \__ \
-  \_____|_| |_|\___/|_|\___\___| /_/    \_\_/\_/ \__,_|_|  \__,_|___/
-                                                                     
+# The Choice Awards CSC 131 project 
 # https://github.com/Project131/Choice-Awards                                                  
-
-## The Choice Awards CSC 131 project 
+## The Choice Awards project 
 
 This folder is for all of the web development files used in the creation of this project.
 The Server is hosted on a VPS and has the domain https://choiceawards.xyz (yes I set up ssl and a domain name for this project).
