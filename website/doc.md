@@ -2,9 +2,9 @@
 # https://github.com/Project131/Choice-Awards                                                  
 ## The Choice Awards project 
 
-This folder is for all of the web development files used in the creation of this project.
-The Server is hosted on a VPS and has the domain https://choiceawards.xyz (yes I set up ssl and a domain name for this project).
-There is a mailing service connected to the website. If you create an account you will see an email.
+    This folder is for all of the web development files used in the creation of this project.
+    The Server is hosted on a VPS and has the domain https://choiceawards.xyz (yes I set up ssl and a domain name for this project).
+    There is a mailing service connected to the website. If you create an account you will see an email.
 
 ### In the base website folder:
 
