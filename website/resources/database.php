@@ -10,7 +10,6 @@
                                                                      
                                                                      
 Author: Chris Lemke
-Sensitive information redacted for github
 call class like: $db = new Database($table);
 This class is made to call our Movie database and choose the table to work with.
 */
