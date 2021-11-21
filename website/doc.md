@@ -1,6 +1,6 @@
 # The Choice Awards CSC 131 project 
 # https://github.com/Project131/Choice-Awards                                                  
-## The Choice Awards project 
+## The Choice Awards website documents folder 
 
     This folder is for all of the web development files used in the creation of this project.
     The Server is hosted on a VPS and has the domain https://choiceawards.xyz (yes I set up ssl and a domain name for this project).
