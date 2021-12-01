@@ -15,7 +15,6 @@ This code is used to parse the json data and fill the mysql with the data
 
 include_once "database.php"; //used for connection to DB
 
-//CHANGED THIS FOR TESTING
 $tableName = "movies";
 
 //create new connection
