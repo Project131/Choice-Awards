@@ -15,6 +15,7 @@ This code is used to parse the json data and fill the mysql with the data
 
 include_once "database.php"; //used for connection to DB
 
+//CHANGED THIS FOR TESTING
 $tableName = "movies";
 
 //create new connection
@@ -40,12 +41,16 @@ for($i = 0; $i < count($json_data); $i++){
     extract($json_data[$i]); //seperate each array of arrays to get the individual data per movie per loop
     $winner = intval($winner); //set $winner to a 0 or 1 to be used with mysql
     $category = ucwords(strtolower($category)); //sanitize all capitalized category name to first letter uppercase, rest lowercase
+    $name = str_replace('"', '\'', $name); //sanitize all of the names for mysql syntax
+    if(strlen($name) >= 255){ //ensure all names are under 255 characters
+        $name = substr($name, 0, 255);
+    }
 
     if(preg_match('/"/', $film)) {
-        $sql = "insert into {$tableName}(title, nominationCategory, yearReleased, awardYear, isWinner, votes) values('{$film}', \"{$category}\", {$year_film}, {$year_ceremony}, {$winner}, {$defaultVotes});"; //build sql string for that one special movie
+        $sql = "insert into {$tableName}(title, nominationCategory, winnerName, yearReleased, awardYear, isWinner, votes) values('{$film}', \"{$category}\", \"{$name}\", {$year_film}, {$year_ceremony}, {$winner}, {$defaultVotes});"; //build sql string for that one special movie
     }
     else {
-        $sql = "insert into {$tableName}(title, nominationCategory, yearReleased, awardYear, isWinner, votes) values(\"{$film}\", \"{$category}\", {$year_film}, {$year_ceremony}, {$winner}, {$defaultVotes});"; //build sql string
+        $sql = "insert into {$tableName}(title, nominationCategory, winnerName, yearReleased, awardYear, isWinner, votes) values(\"{$film}\", \"{$category}\", \"{$name}\", {$year_film}, {$year_ceremony}, {$winner}, {$defaultVotes});"; //build sql string
     }
 
     if($db->query($sql) === TRUE) {
