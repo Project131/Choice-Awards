@@ -1,20 +1,4 @@
 package choiceawards.api;
-/*
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class ChoiceAwardsApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(ChoiceAwardsApplication.class, args);
-	}
-
-}
-
-
-*/
-
 
 import java.util.Arrays;
 
@@ -25,10 +9,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class ChoiceAwardsApplication {
+public class ApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ChoiceAwardsApplication.class, args);
+		SpringApplication.run(ApiApplication.class, args);
 	}
 
 	@Bean
