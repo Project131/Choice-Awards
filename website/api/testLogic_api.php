@@ -1,4 +1,18 @@
 <?php
+/*
+
+	 _____ _           _                                         _     
+	/ ____| |         (_)              /\                       | |    
+ | |    | |__   ___  _  ___ ___     /  \__      ____ _ _ __ __| |___ 
+ | |    | '_ \ / _ \| |/ __/ _ \   / /\ \ \ /\ / / _` | '__/ _` / __|
+ | |____| | | | (_) | | (_|  __/  / ____ \ V  V / (_| | | | (_| \__ \
+	\_____|_| |_|\___/|_|\___\___| /_/    \_\_/\_/ \__,_|_|  \__,_|___/
+																																		 
+																																		 
+Author(s): Chris Lemke &
+Entry point for rest api.
+Queries url call and returns JSON
+*/
 
 include_once 'resources/database.php';  //used to connect to our DB
  
@@ -84,21 +98,59 @@ callQuery($myQuery);*/
 //  https://choiceawards.xyz/api/testLogic_api.php/title/nominationCategory/winnerName/awardYear/isWinner
   $sql = "update {$tableName} set votes = votes + 1 where title = '{$title}' and nominationCategory = '{$category}';";
 
-$start_query ="Select title from movies where isWinner = 1";
+// $start_query ="Select title from movies where isWinner = 1";
+//$start_query ="Select * from movies where isWinner = 0";
 echo "<br>";
 echo "isset title:" . isset($request['title']) . "<br><br>";
 echo "isset nominationCategory:" . isset($request['nominationCategory']) . "<br><br>";
 echo "isset awardYear:" . isset($request['awardYear']) . "<br><br>";
 
-if(isset($request[0])){
-	$start_query .= " and title = " . "{$request[0]}";    //. "'" . $request[0] . "'";
+$nullVal = "NA";
+$firstQuery = true;
+$start_query ="Select * from movies";
+
+if(isset($request[0]) && $request[0] != $nullVal){
+    if($firstQuery){
+          $start_query .= " where title = '{$request[0]}'";
+          $firstQuery = false;
+    } else{
+        $start_query .= " and title = '{$request[0]}'";
+    }
 }
-if(isset($request[1])){
-	$start_query .= " and nominationCategory = " . $request[1];
+if(isset($request[1]) && $request[1] != $nullVal){
+    if($firstQuery){
+        $start_query .= " where nominationCategory = '{$request[1]}'";
+        $firstQuery = false;
+      } else{
+        $start_query .= " and nominationCategory = '{$request[1]}'";
+      }
 }
-if(isset($request[3])){
-	$start_query .= " and awardYear = " . $request[3];
+if(isset($request[2]) && $request[2] != $nullVal){
+    if($firstQuery){
+        $start_query .= " where winnerName = '{$request[2]}'";
+        $firstQuery = false;
+      } else{
+        $start_query .= " and winnerName = '{$request[2]}'";
+      }
 }
+if(isset($request[3]) && $request[3] != $nullVal){
+    if($firstQuery){
+        $start_query .= " where awardYear = '{$request[3]}'";
+        $firstQuery = false;
+      }else{
+        $start_query .= " and awardYear = " . $request[3];
+      }
+}
+if(isset($request[4])  && $request[4] != $nullVal){
+    if($firstQuery){
+        $start_query .= " where isWinner = '{$request[4]}'";
+        $firstQuery = false;
+      } else{
+        $start_query .= " and isWinner = " . $request[4];
+      }
+   
+}
+
 
 $start_query = $start_query . ";";
 echo "<br><br><br>" . $start_query . "<br><br>";
