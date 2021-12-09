@@ -1,18 +1,4 @@
 <?php
-/*
-
-	 _____ _           _                                         _     
-	/ ____| |         (_)              /\                       | |    
- | |    | |__   ___  _  ___ ___     /  \__      ____ _ _ __ __| |___ 
- | |    | '_ \ / _ \| |/ __/ _ \   / /\ \ \ /\ / / _` | '__/ _` / __|
- | |____| | | | (_) | | (_|  __/  / ____ \ V  V / (_| | | | (_| \__ \
-	\_____|_| |_|\___/|_|\___\___| /_/    \_\_/\_/ \__,_|_|  \__,_|___/
-																																		 
-																																		 
-Author(s): Chris Lemke &
-Entry point for rest api.
-Queries url call and returns JSON
-*/
 
 include_once 'resources/database.php';  //used to connect to our DB
  
