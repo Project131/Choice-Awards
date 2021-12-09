@@ -94,6 +94,16 @@ callQuery($allQuery);
 $myQuery = "select * from movies where title=Joker";
 echo $myQuery;
 callQuery($myQuery);*/
+///////////////////////////////////////////////////
+$request[0] =  $_GET["title"];
+$request[1] =  $_GET["nominationCategory"];
+$request[2] =  $_GET["winnerName"];
+$request[3] =  $_GET["awardYear"];
+$request[4] =  $_GET["isWinner"];
+
+print_r($request);
+
+///////////////////////////////////////////////////////////
 
 //  https://choiceawards.xyz/api/testLogic_api.php/title/nominationCategory/winnerName/awardYear/isWinner
   $sql = "update {$tableName} set votes = votes + 1 where title = '{$title}' and nominationCategory = '{$category}';";
