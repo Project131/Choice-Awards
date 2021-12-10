@@ -83,6 +83,27 @@ class Database {
         $result = $this->conn->query($query);
     }
 
+    //takes a mysql statement and returns an array
+    function sqlArrayResult($query) {
+        $result = $this->conn->query($query);
+        $resultArray = array();
+
+        //turn mysqli_result Object into an array
+        if($result->num_rows > 0) {
+            $i = 0;
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                $resultArray[$i] = $row;
+                $i++;
+            }
+        } 
+        else {
+            return array('message' => 'No Movies Found');
+        }
+        //output the movie data array as JSON
+        return $resultArray;
+    }
+
     //custom query
     function query($query) {
         return $this->conn->query($query);
