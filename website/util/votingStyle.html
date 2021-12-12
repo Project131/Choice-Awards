@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Choice Awards</title>
+    <style>
+        form {
+            margin: 30px 0px;
+        }
+        input {
+            display: block;
+            margin: 10px 15px;
+            padding: 8px 10px;
+            font-size: 16px;
+        }
+        div {
+            font-size: 20px;
+            margin: 0px 15px;
+        }
+        h2 {
+            color: black;
+            margin: 20px 15px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Voting</h2>
+    <form method="post" action="https://choiceawards.xyz/util/votingUpdate.php">
+        <input type="text" name="movie" placeholder="Enter Movie Name">
+        <input type="text" name="category" placeholder="Enter Movie's Category">
+        <input type="submit" name="submit" value="submit">
+    </form>
+    <br>
+</body>
+</html>
