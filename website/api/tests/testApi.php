@@ -23,6 +23,9 @@ $urlThree = "https://choiceawards.xyz/api/api.php/search?title=Gladiator";
 $urlFour = "https://choiceawards.xyz/api/api.php/search?awardYear=1980&isWinner=1";
 $urlFive = "https://choiceawards.xyz/api/api.php/search?winnerName=Meryl%20Streep";
 $urlSix = "https://choiceawards.xyz/api/api.php/search?title=Gone%20With%20The%20Wind&isWinner=1";
+$urlSeven = "https://choiceawards.xyz/api/api.php/NA/Art%20Direction/NA/1995/1";
+$urlEight = "https://choiceawards.xyz/api/api.php/The%20Miracle%20Worker/NA/NA/NA/0";
+$urlNine = "https://choiceawards.xyz/api/api.php/NA/NA/Jack%20Nicholson/NA/NA";
 
 //Initialize curl tool and sets options
 $curl = curl_init();
@@ -132,8 +135,44 @@ $resultSix = curl_exec($curl);
 
 compare($resultSix, $expectedSix);
 
+//Test Seven
+echo "Test Seven<br><br>";
 
-//Closes the curl abd database
+$querySeven = $db->sqlArrayResult("SELECT title,nominationCategory,winnerName,yearReleased,awardYear,isWinner,votes
+								  FROM movies WHERE nominationCategory='Art Direction' AND awardYear='1995' AND isWinner='1'");
+$expectedSeven = json_encode($querySeven);
+
+curl_setopt($curl, CURLOPT_URL, $urlSeven);
+$resultSeven = curl_exec($curl);
+
+compare($resultSeven, $expectedSeven);
+
+//Test Eight
+echo "Test Eight<br><br>";
+
+$queryEight = $db->sqlArrayResult("SELECT title,nominationCategory,winnerName,yearReleased,awardYear,isWinner,votes
+								  FROM movies WHERE title='The Miracle Worker' AND isWinner='0'");
+$expectedEight = json_encode($queryEight);
+
+curl_setopt($curl, CURLOPT_URL, $urlEight);
+$resultEight = curl_exec($curl);
+
+compare($resultEight, $expectedEight);
+
+//Test Nine
+echo "Test Nine<br><br>";
+
+$queryNine = $db->sqlArrayResult("SELECT title,nominationCategory,winnerName,yearReleased,awardYear,isWinner,votes
+								 FROM movies WHERE winnerName='Jack Nicholson'");
+$expectedNine = json_encode($queryNine);
+
+curl_setopt($curl, CURLOPT_URL, $urlNine);
+$resultNine = curl_exec($curl);
+
+compare($resultNine, $expectedNine);
+
+
+//Closes the curl and database
 curl_close($curl);
 $db->disconnect();
 	
