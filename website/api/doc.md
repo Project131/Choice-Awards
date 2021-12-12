@@ -16,7 +16,11 @@
         This will return json formatted data based on the query
 
 
-    The format to 
+    The format to call it as not query search: https://choiceawards.xyz/api/api.php/title/nominationCategory/winnerName/awardYear/isWinner
+        ***IMPORTANT TO NOTE***
+            If you want to call in this style, you MUST put 'NA' in every variable spot if you do not wish to get information about it
+
+            Example: https://choiceawards.xyz/api/api.php/NA/Cinematography/NA/2010/1
 
 
 
