@@ -30,6 +30,8 @@
             - votingStyle.html: An .html file used on our front end website on the 'Movie Voting' page. Sends inputed data via POST to votingUpdate.php
             - votingUpdate.php: PHP code that receives the voting data from the front end via POST
 
+    ChoiceAwardsDoc.html: HTML documentation file explaining our API and the calling methods.
+
     This doc.md file
 
 ### In the doc folder:
