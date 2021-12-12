@@ -8,13 +8,34 @@
 
 ### In the base website folder:
 
-    votingStyle.html is used on the Movie Voting page to allow users to input data and sends a post command to votingUpdate.php (https://choiceawards.xyz/movie-voting).
-    votingUpdate.php received a post command from the html code and updates the mySql database to keep track of the votes.
-    wpTableResults.php queries mySql and creates a readable array to display the results of the voting (https://choiceawards.xyz/results).
+    The api project folder.
+        Filled with PHP code that runs our public api which returns information about oscar winnings and nominations.
+            - resources folder.
+                - database.php: A PHP file for connecting to our MySql database and some functions for querying it.
+            - tests folder.
+                -testApi.php: A PHP file for testing API calls to our own API
+                -testDB.php: A php file for testing our DB connection file and some of the functions in it.
+            -api.php: A PHP file which acts as the entry point to our api. Reads in API query and returns the json formatted data.
+            -createSQL.php: A PHP file which takes the API query data and creates a MySql query. Decides what to api returns.
+            -wpTableResults.php: Queries out DB data for votes and creates 2-D array of data. Useful for seeing all the votes and used on front end displays.
 
-### In the resources folder:
+    The util folder. 
+        Filled with PHP files used for connections to the website front end, team logos, and a .json file of initial DB data 
+            - choice-awards-logo-dark.png: A Dark theme logo for our team 
+            - choice-awards-logo-dark.png: A light theme logo for our team
+            - createTable.php: PHP code to create a table in a DB
+            - fillDatabase.php: PHP code to fill the DB table with information from the .json file
+            - resetVotes.php: PHP code to reset the votes in our database. 
+            - the_oscar_award.json: A .json file of oscar award data we got from kaggle
+            - votingStyle.html: An .html file used on our front end website on the 'Movie Voting' page. Sends inputed data via POST to votingUpdate.php
+            - votingUpdate.php: PHP code that receives the voting data from the front end via POST
 
-    database.php is the core class that our php calls to connect and query mySql.
-    fillDatabase.php is a one time use program that reads in our .json file and fills mySql with our data.
-    resetVotes.php is used to reset all of the votes inside of the mySql table. Mostly used for testing and for a final run before setting this project into production.
-    the_oscar_award.json is a .json file of oscar award data we got from kaggle.
+    This doc.md file
+
+### In the doc folder:
+
+    CSC 131 Style Guide.pdf: A style guide for how to format our code. Origionally made for java, but continued use for PHP.
+    Group4APIdiagram.JPG: A diagram of how our API code connects and flows.
+    Obstacles_Approaches.pdf: The challenges we faced as a group during this assignment.
+    sampleHeader.txt: A sample text of the header we used at the top of our files.
+    websiteDoc.md: A doc folder explaining everything in website folder. (This file!)
