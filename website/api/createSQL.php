@@ -9,7 +9,7 @@
   \_____|_| |_|\___/|_|\___\___| /_/    \_\_/\_/ \__,_|_|  \__,_|___/
                                                                      
                                                                      
-Author(s): Chris Lemke & 
+Author(s): Chris Lemke & Matthew Williams
 Creates a mysql query string based on information from API call
 Returns mysql string
 */
