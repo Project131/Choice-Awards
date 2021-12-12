@@ -32,7 +32,7 @@
 
     ChoiceAwardsDoc.html: HTML documentation file explaining our API and the calling methods.
 
-    This doc.md file
+    A doc.md file which is this same file
 
 ### In the doc folder:
 
