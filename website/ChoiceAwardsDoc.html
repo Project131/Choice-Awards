@@ -1,0 +1,77 @@
+<html>
+
+	<div class='content'>
+	<div class="heading">
+		
+    <div class="sub">Choice Awards | API Documentation</div>
+    
+    <div class="logo">
+			<a href='https://choiceawards.xyz/'>The Choice Awards</a><br>
+		</div>
+	</div>
+	
+	<br>
+	Our website retrives Oscar Nominated Movies from our MYSQL Database. It then displays it to the user in starting with Film Title, Year Released, Award Year, Award Category, and Nominee. 
+	
+	The webpage contains 5 different ways to search for movies:<br><br>
+	
+	<br>
+		<li>Accessing the website without any search displays every Oscar nominated movie in order from most recent to the oldest.</li>
+		<li>Search by Film Title displays all film with that title including their nominations.</li>
+		<li>Search by Year displays movies released in that year accompanied by their ceremony year. </li>
+		<li>Search by Award displays all movies that fall under the category.</li>
+		<li>Search by Nominee displays all movies and awards that Nominee has been nominated for.</li>
+
+  <br><br>
+
+  The website database looks for certain variables to be inputted when you use the query search. 
+  
+  <br><br>
+
+	<hh1><b>List of Variables: </b></hh1>
+  
+  <li>movie: Name of the movie</li>
+	<li>nominationCategory: Name of the Nomination Category</li>
+	<li>winnerName: Name of the Entity who was nominated </li>
+	<li>awardYear: Year that the movie was nominated/awarded</li>
+	<li>releaseYear: Year that the movie was released</li>
+  
+  <br><br>
+
+	<hh1><b>Commands: </b></hh1>
+	<br>
+	
+  <br><br>
+
+  <hh1><b>GET api.php: </b></hh1>
+	<br>
+  
+	<pre><code>
+https://choiceawards.xyz/api/api.php
+	</code></pre>
+	
+	Our api.php class takes in the parameterized information which then gets turned into a mysql call to our database.php class. This returns an array back to api.php  which then outputs the data in JSON based on the query search.
+
+	<br><br>
+	
+	<hh1><b>Query Search: </b></hh1>
+	<br>
+	<pre><code>
+https://choiceawards.xyz/api/api.php/search?variable=value&variable2=value2
+	</code></pre>
+
+  This call is utilizied for our query search. The variables in the query can be called in any order. 
+	<br><br>
+	
+	</code></pre><br>
+	<hh1><b>Specific Search:</b></hh1>
+
+	<pre><code>
+ https://choiceawards.xyz/api/api.php/title/nominationCategory/winnerName/awardYear/isWinner 
+
+ Example: https://choiceawards.xyz/api/api.php/NA/Cinematography/NA/2010/1
+	</code></pre>
+	This is an example call of if the user wants to call specific data from our MYSQL Database. Replacing the variable with 'NA' tells the api.php class not to query that specific variable in our query search. Variables must be spelled correctly (caseSensitive) or else the database will not register. If isWinner is 1 you are asking for the winner. If isWinner is 0 you are asking for all the nominees who did not win. If 'NA' is put in isWinner, the search will output both. 
+	<br><br>
+	
+</html>
