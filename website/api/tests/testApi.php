@@ -13,8 +13,7 @@ Author(s): Sir Christian Orefer Casals
 Uses curl to sample the JSON from API urls and then compares that to the matching query to the SQL database
 */
 
-include_once 'resources/database.php'; //connect to database
-include_once 'createSQL.php'; //connect to database
+include_once '../resources/database.php'; //connect to database
 
 //Initialize urls into variables
 $urlOne = "https://choiceawards.xyz/api/api.php/search?awardYear=1997&nominationCategory=best%20picture&isWinner=1";
