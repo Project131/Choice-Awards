@@ -12,3 +12,27 @@
 Author(s): 
 
 */
+
+include_once '../resources/database.php'; //connect to database
+
+//Test Connection to DB
+$tableName = "movies";
+$db = new Database($tableName);
+
+echo "Testing connection to database starting. If no error message, connection good. <br>";
+$db->connect();
+echo "Testing connection to database finished. <br>";
+
+//Test readVotes
+//make sql string example
+//$sql = "make sql string example";
+echo "Testing readVotes. <br>";
+//test readVotes($sql);
+echo "Testing readVotes done. <br>";
+
+//Test sqlArrayResult
+//Test query
+//Test disconnect
+
+
+?>
