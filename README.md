@@ -25,5 +25,6 @@ https://choiceawards.xyz/api/api.php/title/nominationCategory/winnerName/awardYe
     If you want to call in this style, you MUST put 'NA' in every variable spot if you do not wish to get information about it
     You also MUST call it in this order. 
     
-        Example: https://choiceawards.xyz/api/api.php/NA/Cinematography/NA/2010/1
-        Returns information about the movies that won in the Cinematography category in 2010 in json
+Example: https://choiceawards.xyz/api/api.php/NA/Cinematography/NA/2010/1
+
+    Returns information about the movies that won in the Cinematography category in 2010 in json
