@@ -40,3 +40,4 @@
         testDB.php tests all of the functions in the database.php file to ensure it is working correctly
 
     wpTableResults.php is mostly used for the front end tables. It can be used to view a 2-D array of all the data with votes however.
+    
